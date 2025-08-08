@@ -1,0 +1,417 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventas de negros Miluka</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            font-size: 0.875rem; /* Ajuste global a 'text-sm' de Tailwind */
+            padding: 0.25rem; /* Menos padding general del body */
+            /* Eliminamos min-h-screen para que el contenido determine la altura */
+            display: block; /* Volvemos al display por defecto o flex-col para evitar centrado vertical excesivo */
+        }
+        .container {
+            width: 99%; /* Ocupa casi todo el ancho disponible */
+            max-width: 900px; /* Un máximo para pantallas muy grandes, pero flexible */
+            margin: 0.25rem auto; /* Ajustar margen superior/inferior casi a cero, centrado */
+            padding: 0.75rem; /* Reducir aún más el padding interno del contenedor principal */
+        }
+        .bg-card {
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        /* Estilo para la imagen de perfil dentro de la tarjeta */
+        .profile-image-container {
+            width: 72px; /* w-18 */
+            height: 72px; /* h-18 */
+            overflow: hidden;
+            border-radius: 9999px; /* rounded-full */
+            margin: 0 auto 10px auto; /* Centrar y margen inferior */
+            border: 2px solid #e5e7eb;
+            flex-shrink: 0;
+        }
+        .profile-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-start"> <div class="container mx-auto rounded-2xl bg-card">
+        <div id="main-page" class="text-center transition-opacity duration-300 py-2 px-2">
+            <h1 class="text-2xl font-bold mb-3 text-gray-800">Ventas de negros Miluka</h1> <p class="text-base text-gray-600 mb-4">Elige una opción para comenzar.</p> <div class="flex flex-col md:flex-row gap-3 justify-center">
+                <button onclick="showPage('sell-negro-form')" class="bg-blue-600 text-white font-semibold py-2 px-5 rounded-xl shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 text-sm">
+                    Vender mi negro
+                </button>
+                <button onclick="showPage('buy-negro-list')" class="bg-green-600 text-white font-semibold py-2 px-5 rounded-xl shadow-lg hover:bg-green-700 transition-all duration-300 transform hover:scale-105 text-sm">
+                    Comprar un negro
+                </button>
+            </div>
+        </div>
+
+        <div id="sell-negro-form" class="hidden transition-opacity duration-300 py-2 px-2">
+            <button onclick="showPage('main-page')" class="text-blue-600 font-semibold mb-2 hover:underline text-sm">&larr; Volver</button> <h2 class="text-xl font-bold mb-3 text-gray-800">Vender mi negro</h2> <form id="sell-form" class="space-y-3">
+                <div>
+                    <label for="imageUrl" class="block text-gray-700 font-medium mb-1 text-xs">0. URL de la foto de tu negro:</label>
+                    <input type="url" id="imageUrl" name="imageUrl" class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 transition-shadow text-xs" placeholder="Ej: https://ejemplo.com/tu-negro.jpg" required>
+                </div>
+                <div>
+                    <label for="height" class="block text-gray-700 font-medium mb-1 text-xs">1. ¿Cuánto mide tu negro? (en cm)</label>
+                    <input type="number" id="height" name="height" class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 transition-shadow text-xs" placeholder="Ej: 50" required>
+                </div>
+                <div>
+                    <label for="wear" class="block text-gray-700 font-medium mb-1 text-xs">2. ¿Qué tan gastado está tu negro?</label>
+                    <select id="wear" name="wear" class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 transition-shadow text-xs" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="0km">0km</option>
+                        <option value="poco-uso">Poco uso</option>
+                        <option value="uso-medio">Uso medio</option>
+                        <option value="destrozado">Destrozado</option>
+                        <option value="moribundo">Moribundo</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="reason" class="block text-gray-700 font-medium mb-1 text-xs">3. ¿Por qué decidiste vender tu negro?</label>
+                    <textarea id="reason" name="reason" rows="2" class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 transition-shadow text-xs" placeholder="Escribe aquí tu motivo..." required></textarea>
+                </div>
+                <div>
+                    <label for="behavior" class="block text-gray-700 font-medium mb-1 text-xs">4. Describe el comportamiento natural del negro</label>
+                    <textarea id="behavior" name="behavior" rows="2" class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 transition-shadow text-xs" placeholder="Describe su rendimiento, si es silencioso, etc." required></textarea>
+                </div>
+                <div>
+                    <label for="obedience" class="block text-gray-700 font-medium mb-1 text-xs">5. ¿Qué tan obediente es el negro?</label>
+                    <select id="obedience" name="obedience" class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 transition-shadow text-xs" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="sumiso">Sumiso (Rápido y eficiente)</option>
+                        <option value="obedece">Obedece (Normalmente responde bien)</option>
+                        <option value="medio-terco">Medio terco (A veces tiene fallos)</option>
+                        <option value="dificil">Se hace la difícil (A menudo da problemas)</option>
+                        <option value="rebelde">Se quiere rebelar (Constantemente da fallos)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="price" class="block text-gray-700 font-medium mb-1 text-xs">6. ¿Cuánto quieres por el negro?</label>
+                    <input type="number" id="price" name="price" class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 transition-shadow text-xs" placeholder="Ej: 5000" required>
+                </div>
+                <div class="flex flex-col md:flex-row gap-2 justify-center">
+                    <button type="button" onclick="calculatePrice()" class="bg-gray-500 text-white font-semibold py-2 px-4 rounded-xl shadow-md hover:bg-gray-600 transition-colors text-xs">
+                        Calcular Precio Estimado
+                    </button>
+                    <button type="submit" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl shadow-md hover:bg-blue-700 transition-colors text-xs">
+                        Vender negro
+                    </button>
+                </div>
+            </form>
+            <div id="price-result" class="mt-4 p-3 bg-blue-50 rounded-xl border border-blue-200 text-center text-blue-800 font-semibold hidden text-xs">
+                <p>Precio estimado para tu negro: <span id="estimated-price" class="text-base font-bold"></span></p>
+            </div>
+            <div id="sell-success-message" class="mt-4 p-3 bg-green-50 rounded-xl border border-green-200 text-center text-green-800 font-semibold hidden text-xs">
+                <p>¡Tu negro ha sido puesto a la venta con éxito!</p>
+            </div>
+        </div>
+
+        <div id="buy-negro-list" class="hidden transition-opacity duration-300 py-2 px-2">
+            <button onclick="showPage('main-page')" class="text-blue-600 font-semibold mb-2 hover:underline text-sm">&larr; Volver</button> <h2 class="text-xl font-bold mb-3 text-gray-800">Comprar un negro</h2> <div class="text-right text-base font-semibold text-gray-700 mb-3"> Tu Saldo: <span id="user-balance" class="text-green-600">$10000.00</span>
+            </div>
+            <div id="negro-listings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
+                </div>
+            <p id="no-negros-message" class="text-center text-gray-500 mt-4 hidden text-sm">Aún no hay negros en venta.</p>
+
+            <div id="buy-success-message" class="mt-4 p-3 bg-green-50 rounded-xl border border-green-200 text-center text-green-800 font-semibold hidden text-sm">
+                <p>¡Compra realizada con éxito! Tu negro llegará en los próximos días.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Array para simular una base de datos de negros vendidos
+        let soldnegros = [];
+        // Saldo del usuario
+        let userBalance = 10000.00; // Saldo inicial
+
+        // Función para actualizar el saldo visible
+        function updateBalanceDisplay() {
+            document.getElementById('user-balance').innerText = `$${userBalance.toFixed(2)}`;
+        }
+
+        // Función para cambiar de página (vista)
+        function showPage(pageId) {
+            document.querySelectorAll('#main-page, #sell-negro-form, #buy-negro-list').forEach(page => {
+                page.classList.add('hidden');
+            });
+            const pageToShow = document.getElementById(pageId);
+            if (pageToShow) {
+                pageToShow.classList.remove('hidden');
+            }
+
+            // Si la página a mostrar es la lista de compra, actualizamos la lista y el saldo
+            if (pageId === 'buy-negro-list') {
+                displaynegroListings();
+                updateBalanceDisplay();
+            }
+            // Ocultar mensajes de éxito al cambiar de página
+            document.getElementById('sell-success-message').classList.add('hidden');
+            document.getElementById('buy-success-message').classList.add('hidden');
+        }
+
+        // Datos de negros predefinidos
+        const predefinednegros = [
+            {
+                imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                height: 60,
+                wear: '0km',
+                obedience: 'sumiso',
+                reason: 'No lo necesito, fue un regalo.',
+                behavior: 'Un negro silencioso y rápido, ideal para hablar o trabajo pesado.',
+                price: 12000,
+            },
+            {
+                imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1ddf724f67?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                height: 45,
+                wear: 'poco-uso',
+                obedience: 'obedece',
+                reason: 'Me compré una nueva.',
+                behavior: 'Funciona bien para tareas diarias.',
+                price: 5000,
+            },
+            {
+                imageUrl: 'https://images.unsplash.com/photo-1542909168-82c72fd3458b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                height: 35,
+                wear: 'uso-medio',
+                obedience: 'medio-terco',
+                reason: 'Quiero cambiar de marca.',
+                behavior: 'Suele quejarse de los látigos, pero rinde.',
+                price: 3000,
+            },
+            {
+                imageUrl: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                height: 55,
+                wear: 'destrozado',
+                obedience: 'rebelde',
+                reason: 'Se me cayó por las escaleras y lo detonó hace mucho.',
+                behavior: 'Ha dado muchas batallas, necesita un médico y reposo.',
+                price: 800,
+            },
+            {
+                imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                height: 40,
+                wear: '0km',
+                obedience: 'sumiso',
+                reason: 'Cumple con todo, lo vendo por falta de espacio.',
+                behavior: 'Una verdadera bestia. Rendimiento superior, sin fallos y con componentes de alta gama.',
+                price: 22500,
+            }
+        ];
+        // Añadir los negros predefinidos a la lista de vendidos para que se muestren
+        soldnegros = [...predefinednegros];
+
+        // Función para calcular el precio estimado
+        function calculatePrice() {
+            const height = parseInt(document.getElementById('height').value);
+            const wear = document.getElementById('wear').value;
+            const obedience = document.getElementById('obedience').value;
+
+            // Mapeo de valores para la evaluación
+            const wearMap = {
+                '0km': 100,
+                'poco-uso': 80,
+                'uso-medio': 50,
+                'destrozado': 20,
+                'moribundo': 5,
+            };
+            const obedienceMap = {
+                'sumiso': 100,
+                'obedece': 80,
+                'medio-terco': 50,
+                'dificil': 20,
+                'rebelde': 5,
+            };
+
+            // Validación básica de los inputs
+            if (!height || !wear || !obedience) {
+                alert("Por favor, completa todos los campos para calcular el precio.");
+                return;
+            }
+
+            // Lógica de cálculo del puntaje total
+            // Normalizamos la altura para un rango de 0-100 (ej: 20cm a 100cm)
+            const normalizedHeight = Math.max(0, Math.min(100, (height - 20) / 80 * 100));
+            const wearScore = wearMap[wear];
+            const obedienceScore = obedienceMap[obedience];
+
+            const totalScore = (normalizedHeight * 0.4) + (wearScore * 0.4) + (obedienceScore * 0.2); // ponderación
+
+            // Mapeamos el puntaje total a un rango de precios ($1000 - $15000)
+            const minPrice = 1000;
+            const maxPrice = 15000;
+            const estimatedPrice = Math.round(minPrice + (totalScore / 100) * (maxPrice - minPrice));
+
+            // Mostramos el resultado
+            const priceResultDiv = document.getElementById('price-result');
+            document.getElementById('estimated-price').innerText = `$${estimatedPrice}`;
+            priceResultDiv.classList.remove('hidden');
+        }
+
+        // Manejar el envío del formulario
+        document.getElementById('sell-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar el envío por defecto
+
+            const imageUrl = document.getElementById('imageUrl').value;
+            const height = parseInt(document.getElementById('height').value);
+            const wear = document.getElementById('wear').value;
+            const obedience = document.getElementById('obedience').value;
+            const reason = document.getElementById('reason').value;
+            const behavior = document.getElementById('behavior').value;
+            const price = parseFloat(document.getElementById('price').value);
+
+            // Validación de los inputs
+            if (!imageUrl || !height || !wear || !obedience || !reason || !behavior || !price) {
+                alert("Por favor, completa todos los campos del formulario.");
+                return;
+            }
+
+            // Creamos un objeto con los datos de la nueva negro
+            const newnegro = {
+                imageUrl,
+                height,
+                wear,
+                obedience,
+                reason,
+                behavior,
+                price
+            };
+
+            // Agregamos la nueva negro a nuestra lista de vendidos (simulación de base de datos)
+            soldnegros.unshift(newnegro);
+
+            // Muestra mensaje de éxito y resetea el formulario
+            const successMessageDiv = document.getElementById('sell-success-message');
+            successMessageDiv.classList.remove('hidden');
+
+            this.reset();
+            document.getElementById('price-result').classList.add('hidden');
+
+            // Después de un tiempo, volvemos a la página principal y ocultamos el mensaje
+            setTimeout(() => {
+                successMessageDiv.classList.add('hidden');
+                showPage('main-page');
+            }, 3000);
+        });
+
+        // Función para generar las estrellas de calificación
+        function getStars(score) {
+            const stars = Math.round(score / 20); // Mapeamos el puntaje a un máximo de 5 estrellas
+            let starIcons = '';
+            for (let i = 0; i < 5; i++) {
+                if (i < stars) {
+                    starIcons += '<i class="fas fa-star text-yellow-400"></i>';
+                } else {
+                    starIcons += '<i class="far fa-star text-gray-400"></i>';
+                }
+            }
+            return starIcons;
+        }
+
+        // Función para pedir un préstamo
+        function requestLoan() {
+            if (confirm("No tienes suficiente saldo. ¿Quieres pedir un préstamo de $5,000?")) {
+                userBalance += 5000;
+                updateBalanceDisplay();
+                alert("¡Préstamo de $5,000 concedido! Tu saldo ha sido actualizado.");
+                displaynegroListings(); // Vuelve a renderizar la lista por si los precios cambiaron la percepción
+            }
+        }
+
+        // Función para simular la compra de un negro
+        function buynegro(index, price) {
+            if (userBalance < price) {
+                requestLoan();
+                return; // Detiene la compra si el saldo es insuficiente y se ofrece el préstamo
+            }
+
+            if (confirm(`¿Estás seguro de que quieres comprar este negro por $${price.toFixed(2)}?`)) {
+                userBalance -= price; // Resta el precio al saldo
+                updateBalanceDisplay(); // Actualiza el saldo en la interfaz
+
+                const purchasednegro = soldnegros.splice(index, 1); // Elimina el negro de la lista
+
+                const buySuccessMessageDiv = document.getElementById('buy-success-message');
+                buySuccessMessageDiv.classList.remove('hidden');
+
+                displaynegroListings(); // Vuelve a renderizar la lista sin el negro comprado
+
+                setTimeout(() => {
+                    buySuccessMessageDiv.classList.add('hidden');
+                }, 4000); // Oculta el mensaje después de 4 segundos
+            }
+        }
+
+
+        // Función para mostrar los negros en la página de compra
+        function displaynegroListings() {
+            const negroListingsDiv = document.getElementById('negro-listings');
+            const noNegrosMessage = document.getElementById('no-negros-message');
+            negroListingsDiv.innerHTML = ''; // Limpiamos la lista
+
+            if (soldnegros.length === 0) {
+                noNegrosMessage.classList.remove('hidden');
+                return;
+            } else {
+                noNegrosMessage.classList.add('hidden');
+            }
+
+            soldnegros.forEach((negro, index) => {
+                // Cálculo del puntaje para las estrellas
+                const wearMap = { '0km': 100, 'poco-uso': 80, 'uso-medio': 50, 'destrozado': 20, 'moribundo': 5 };
+                const obedienceMap = { 'sumiso': 100, 'obedece': 80, 'medio-terco': 50, 'dificil': 20, 'rebelde': 5 };
+                const normalizedHeight = Math.max(0, Math.min(100, (negro.height - 20) / 80 * 100));
+
+                const score = (normalizedHeight * 0.4) + (wearMap[negro.wear] * 0.4) + (obedienceMap[negro.obedience] * 0.2);
+                const stars = Math.round(score / 20);
+
+                // Cálculo del precio final con comisión
+                let finalPrice = negro.price;
+                if (stars === 1) {
+                    finalPrice *= 1.20; // +20%
+                } else if (stars === 5) {
+                    finalPrice *= 1.40; // +40%
+                }
+
+                // Creamos el HTML para cada negro
+                const negroCard = document.createElement('div');
+                negroCard.classList.add('bg-white', 'p-3', 'rounded-xl', 'shadow-md', 'border', 'border-gray-200', 'flex', 'flex-col', 'items-center', 'text-center'); // Reducir padding de la tarjeta
+
+                negroCard.innerHTML = `
+                    <div class="profile-image-container">
+                        <img src="${negro.imageUrl}" alt="Imagen del negro" onerror="this.src='https://via.placeholder.com/72x72?text=No+Imagen'" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col items-center mb-2">
+                        <h3 class="text-base font-bold text-gray-800">Negro en Venta</h3>
+                        <div class="text-xs">
+                            ${getStars(score)}
+                        </div>
+                    </div>
+                    <p class="text-xl font-bold text-green-600 mb-2">$${finalPrice.toFixed(2)}</p>
+                    <div class="space-y-1 text-gray-700 w-full text-left text-xs"> <p><strong>Altura:</strong> ${negro.height} cm</p>
+                        <p><strong>Estado:</strong> ${negro.wear}</p>
+                        <p><strong>Obediencia:</strong> ${negro.obedience}</p>
+                        <p><strong>Razón de venta:</strong> ${negro.reason}</p>
+                        <p><strong>Comportamiento:</strong> ${negro.behavior}</p>
+                    </div>
+                    <button onclick="buynegro(${index}, ${finalPrice})" class="mt-3 w-full bg-blue-600 text-white font-semibold py-2 px-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors text-sm">
+                        Comprar Ahora
+                    </button>
+                `;
+                negroListingsDiv.appendChild(negroCard);
+            });
+        }
+    </script>
+
+</body>
+</html>
